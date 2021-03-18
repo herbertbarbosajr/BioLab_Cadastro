@@ -9,6 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.OpenApi.Models;
 
 namespace BioLab_Cadastro
 {
@@ -29,7 +33,27 @@ namespace BioLab_Cadastro
             options.UseSqlServer(StringConexao));
 
             services.AddControllersWithViews();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    { 
+                      Version = "1.0", 
+                      Description =" Api para Cadastro de CLientes",  
+                      Contact = new OpenApiContact
+                      {
+                          Name ="Herbert Barbosa Junior",
+                          Email = "hebertbarbosajr@gmail.com",
+                      }
+                    }
+
+                    );
+            }
+
+            );
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +77,11 @@ namespace BioLab_Cadastro
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c=> {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","herbertbarbosajr/Cadastro/1.0.0");
+            
             });
         }
     }
