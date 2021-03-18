@@ -16,7 +16,7 @@ namespace BioLab_Cadastro.Models
 
         [Display(Name = "Nome")]
         [Column("Nome")]
-        public int Nome { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "CPF")]
         [Column("CPF")]
@@ -24,7 +24,7 @@ namespace BioLab_Cadastro.Models
 
         [Display(Name = "Endereco")]
         [Column("Endereco")]
-        public int Endereco { get; set; }
+        public string Endereco { get; set; }
 
         [Display(Name = "Celular")]
         [Column("Celular")]
@@ -32,7 +32,7 @@ namespace BioLab_Cadastro.Models
 
         [Display(Name = "Email")]
         [Column("Email")]
-        public int Email { get; set; }
+        public string Email { get; set; }
 
         
     }
